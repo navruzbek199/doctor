@@ -18,11 +18,13 @@ import { User, Mail, CheckSquare, MessageSquare, Settings, CreditCard, HelpCircl
 
 // ** Default Avatar Image
 import defaultAvatar from '@src/assets/images/portrait/small/avatar-s-11.jpg'
-
+import jwt_decode from "jwt-decode"
 const UserDropdown = () => {
   // ** Store Vars
   const dispatch = useDispatch()
-
+  const token = localStorage.getItem("token")
+  const decoded = jwt_decode(token)
+  console.log(decoded, "decoded")
   // ** State
   const [userData, setUserData] = useState(null)
 
@@ -40,8 +42,8 @@ const UserDropdown = () => {
     <UncontrolledDropdown tag='li' className='dropdown-user nav-item'>
       <DropdownToggle href='/' tag='a' className='nav-link dropdown-user-link' onClick={e => e.preventDefault()}>
         <div className='user-nav d-sm-flex d-none'>
-          <span className='user-name font-weight-bold'>{(userData && userData['username']) || 'John Doe'}</span>
-          <span className='user-status'>{(userData && userData.role) || 'Admin'}</span>
+          <span className='user-name font-weight-bold'>{decoded?.firstName} {decoded?.lastName}</span>
+          <span className='user-status'>{decoded?.user_type}</span>
         </div>
         <Avatar img={userAvatar} imgHeight='40' imgWidth='40' status='online' />
       </DropdownToggle>

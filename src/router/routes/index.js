@@ -9,7 +9,7 @@ const DefaultRoute = '/home'
 // ** Merge Routes
 const Routes = [
   {
-    path: '/home',
+    path: '/home/',
     component: lazy(() => import('../../views/Home'))
   },
   {
@@ -38,11 +38,19 @@ const Routes = [
     path: '/validation',
     component: lazy(() => import('../../views/validation')),
     layout: 'BlankLayout'
+  },
+  {
+    path: '/send/:userId',
+    component: lazy(() => import('../../views/SendPage'))
+  },
+  {
+    path: '/passwordpage/:userId',
+    component: lazy(() => import('../../views/PasswordPage'))
+  },
+  {
+    path: '/doctoredit/:userId',
+    component: lazy(() => import('../../views/DoctorPage/DoctorEdit'))
   }
-  // {
-  //   path: '/home',
-  //   component: lazy(() => import('../../views/list'))
-  // }
 
 ]
 
