@@ -1,15 +1,15 @@
 import { lazy } from 'react'
 
 // ** Document title
-const TemplateTitle = '%s - Vuexy React Admin Template'
+const TemplateTitle = 'e-doctor'
 
 // ** Default Route
-const DefaultRoute = '/home'
+const DefaultRoute = '/login'
 
 // ** Merge Routes
 const Routes = [
   {
-    path: '/home/',
+    path: '/home',
     component: lazy(() => import('../../views/Home'))
   },
   {
@@ -26,18 +26,16 @@ const Routes = [
   },
   {
     path: '/error',
-    component: lazy(() => import('../../views/Error')),
-    layout: 'BlankLayout'
+    component: lazy(() => import('../../views/Error'))
+    // layout: 'BlankLayout'
   },
   {
-    path: '/register',
-    component: lazy(() => import('../../views/Register')),
-    layout: 'BlankLayout'
-  },
-  {
-    path: '/validation',
-    component: lazy(() => import('../../views/validation')),
-    layout: 'BlankLayout'
+    path: '/createdoctor',
+    component: lazy(() => import('../../views/DoctorPage/CreateDoctor'))
+    // meta: {
+    //   navLink: '/doctors/createdoctor'
+    // }
+    // layout: 'BlankLayout'
   },
   {
     path: '/send/:userId',
@@ -51,7 +49,6 @@ const Routes = [
     path: '/doctoredit/:userId',
     component: lazy(() => import('../../views/DoctorPage/DoctorEdit'))
   }
-
 ]
 
 export { DefaultRoute, TemplateTitle, Routes }

@@ -1,18 +1,6 @@
-.form-group{
+.form-group {
     display: block;
-    .input_mask{
-        display: grid;
-        width: 100%;
-        padding: 8px 10px;
-        border-radius: 7px;
-        outline: none;
-        color: #b4b7bd !important;
-        border:1px solid #404656;
-        background-color: #283046;
-        &:focus-within{
-            border-color: 1px solid #7367f0 !important;
-        }
-    }
+
     .quarter_datepicker {
         align-items: center;
         width: 100%;
@@ -30,7 +18,8 @@
             border: 1px solid #404656;
             background-color: #283046;
             color: #b4b7bd;
-            &::after{
+
+            &::after {
                 content: url("../assets/images/icons/calendar-search.svg");
                 position: absolute;
                 right: 0;
@@ -39,6 +28,7 @@
                 background-color: #4030A4;
             }
         }
+
         .react-datepicker {
             font-style: normal;
             font-weight: 600;
@@ -267,6 +257,7 @@
             text-align: center;
             border: none;
             height: 400px;
+
             .react-datepicker__month-option {
                 font-style: normal;
                 font-weight: 500;
@@ -274,6 +265,7 @@
                 line-height: 200%;
                 color: #0D2C54;
                 margin-bottom: 8px;
+
                 &:hover {
                     background: #F3F6FA;
                 }
@@ -312,16 +304,19 @@
             text-align: center;
             height: 400px;
             overflow-y: scroll;
-            .react-datepicker__year-option{
+
+            .react-datepicker__year-option {
                 font-style: normal;
                 font-weight: 500;
                 font-size: 12px;
                 line-height: 200%;
                 color: #0D2C54;
                 margin-bottom: 8px;
+
                 &:hover {
                     background: #F3F6FA;
                 }
+
                 .react-datepicker__navigation--years {
                     margin-left: auto;
                     margin-right: auto;
@@ -329,29 +324,35 @@
                     width: 20px;
                     height: 10px;
                 }
+
                 .react-datepicker__navigation--years-upcoming {
                     top: -4px;
                 }
             }
         }
     }
-    .gander_option{
+
+    .gander_option {
         gap: 30px;
-        input{
+
+        input {
             width: 20px;
             height: 20px;
             margin-right: -20px;
             background-color: #4030A4;
             border: 1px solid #4030A4;
-            &:checked{
+
+            &:checked {
                 background-color: #4030A4;
                 border: 1px solid #4030A4;
             }
         }
     }
-    .time_items{
+
+    .time_items {
         color: #4030A4;
-        .again_click{
+
+        .again_click {
             color: #4030A4;
         }
     }
@@ -360,28 +361,81 @@
 .gnahTY {
     display: none !important;
 }
-.icons_table{
+
+.icons_table {
     width: 130px !important;
     gap: 10px;
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
-.th_table{
+
+.th_table {
     width: 130px !important;
 }
-.passwordpage{
-    input{
+
+.passwordpage {
+    input {
         width: 50%;
     }
 }
-.doctor_edit{
-    input{
+
+.create_doctor {
+    input {
+        width: 50%;
+    }
+
+    .form-control {
         width: 50%;
     }
 }
-.image_login{
+
+.doctor_edit {
+    input {
+        width: 50%;
+    }
+}
+
+.image_login {
     max-width: 100px !important;
+}
+
+.table_list {
+    opacity: 0.8;
+    cursor: pointer;
+
+    &:hover {
+        background-color: rgba(34, 41, 47, 0.5);
+    }
+}
+
+.head_lang {
+    gap: 21px;
+
+    a {
+        font-style: normal;
+        font-weight: 600;
+        font-size: 12px;
+        line-height: 14px;
+        color: #FFFFFF !important;
+        opacity: 0.3;
+        margin-right: 20px;
+        cursor: pointer;
+    }
+
+    a.active {
+        font-style: normal;
+        font-weight: 600;
+        font-size: 12px;
+        line-height: 14px;
+        color: #4030A4 !important;
+        opacity: 1;
+        cursor: pointer;
+    }
+}
+
+.dropdown-user {
+    display: contents !important;
 }
 
 .modals {
@@ -397,14 +451,17 @@
         // pointer-events: none;
         transition: all 0.3s;
         border: none;
+
         @keyframes anim {
-            0%{
-               top: -50%; 
+            0% {
+                top: -50%;
             }
-            100%{
+
+            100% {
                 top: 50%;
             }
         }
+
         .myModal__rel {
             width: 100%;
             margin: 0 auto;
@@ -434,9 +491,85 @@
         }
     }
 }
-.icons{
+
+.icons {
     cursor: pointer;
 }
+
+.user_blog {
+    padding: 20px;
+    width: 633px;
+
+    .user_title {
+        h4 {
+            font-style: normal;
+            font-weight: 700;
+            font-size: 18px;
+            line-height: 21px;
+            letter-spacing: -0.01em;
+            color: #000000;
+            margin-bottom: 30px;
+        }
+    }
+
+    .userId_text {
+        .information {
+            margin-bottom: 20px;
+
+            p {
+                font-style: normal;
+                font-weight: 400;
+                font-size: 12px;
+                line-height: 14px;
+                color: #68748A;
+                margin-bottom: 8px;
+            }
+
+            span {
+                font-style: normal;
+                font-weight: 400;
+                font-size: 16px;
+                line-height: 14px;
+                color: #0C0C0C;
+            }
+
+            .file {
+                padding: 15px 20px;
+                background: #FFFFFF;
+                border: 1px solid #CDD5E0;
+                border-radius: 10px;
+                width: 192px;
+                height: 64px;
+                cursor: pointer;
+                .file_image{
+                    margin-right: 12px;
+                    img{
+                        object-fit: contain;
+                    }
+                }
+                .file_text {
+                    h6 {
+                        font-style: normal;
+                        font-weight: 600;
+                        font-size: 14px;
+                        line-height: 17px;
+                        color: #313234;
+                    }
+
+                    p {
+                        font-style: normal;
+                        font-weight: 500;
+                        font-size: 12px;
+                        line-height: 15px;
+                        color: #97A2B6;
+                    }
+                }
+            }
+        }
+
+    }
+}
+
 
 .delete_blog {
 
@@ -493,6 +626,7 @@
         justify-content: space-between;
         align-items: center;
         display: flex;
+
         button {
             font-family: 'SF Pro Display';
             font-style: normal;
@@ -508,7 +642,8 @@
             outline: none;
             border: none;
         }
-        .cancel{
+
+        .cancel {
             background: #C1CCDC;
             border-radius: 6px;
             outline: none;
@@ -520,6 +655,7 @@
 .delete_blog {
     .delete_btn {
         gap: 20px;
+
         .okey {
             background: #EA3C3C;
             border-radius: 6px;
@@ -534,6 +670,7 @@
             justify-content: center;
             align-items: center;
         }
+
         .del {
             background: #4030A4;
             border-radius: 6px;
@@ -548,5 +685,48 @@
             justify-content: center;
             align-items: center;
         }
+    }
+}
+
+.noty_type__error {
+    color: #fff;
+    width: 400px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    background: #FF2424 !important;
+    border-radius: 10px !important;
+    padding: 0px 20px;
+    border-bottom: none;
+    width: 400px !important;
+    height: 50px !important;
+}
+
+.noty_theme__mint.noty_bar .noty_body {
+    font-family: 'SF Pro Display';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    color: #FFFFFF;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#noty_layout__topCenter {
+    top: 7% !important;
+    left: 50%;
+    width: 400px !important;
+    height: 50px;
+    transform: translate(calc(-50% - 0.5px)) translateZ(0) scale(1, 1);
+}
+
+.paginations {
+    .active {
+        background-color: #4030A4;
+        border-radius: 50%;
+        color: #fff;
     }
 }

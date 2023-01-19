@@ -1,5 +1,5 @@
 import { Mail, Home, Users, PlusSquare } from 'react-feather'
-
+// import { useTranslation } from "react-i18next"
 export default [
   {
     id: 'home',

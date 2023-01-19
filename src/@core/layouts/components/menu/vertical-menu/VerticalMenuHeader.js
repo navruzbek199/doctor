@@ -8,10 +8,10 @@ import { Disc, X, Circle } from 'react-feather'
 // ** Config
 import themeConfig from '@configs/themeConfig'
 import Brand from '../../../../../assets/images/logo/Group 34139.svg'
+import Brand1 from '../../../../../assets/images/logo/Group 34139 (1).svg'
 const VerticalMenuHeader = props => {
   // ** Props
-  const { menuCollapsed, setMenuCollapsed, setMenuVisibility, setGroupOpen, menuHover } = props
-
+  const {skin, setSkin, menuCollapsed, setMenuCollapsed, setMenuVisibility, setGroupOpen, menuHover } = props
   // ** Reset open group
   useEffect(() => {
     if (!menuHover && menuCollapsed) setGroupOpen([])
@@ -46,9 +46,9 @@ const VerticalMenuHeader = props => {
         <li className='nav-item mr-auto'>
           <NavLink to='/' className='navbar-brand'>
             <span className='brand-logo'>
-              <img src={Brand} alt='logo' />
+              {skin === 'dark' ? <img src={Brand} alt='logo' /> : <img src={Brand1} alt='logo' />
+              }
             </span>
-            {/* <h2 className='brand-text mb-0'>{themeConfig.app.appName}</h2> */}
           </NavLink>
         </li>
         <li className='nav-item nav-toggle'>

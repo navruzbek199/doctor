@@ -1,0 +1,19 @@
+{
+    "welcome_to_react": "salom",
+    "logout": "Chiqish",
+    "patient": "Bemorlar",
+    "firstname": "FIO",
+    "username": "Nomi",
+    "phonenumber": "Telefon raqam",
+    "doctor": "Shifokorlar",
+    "patient_dalate": "Bemorni o'chirish",
+    "patient_about_dal": "Bemorni haqiqatan o'chirmoqchimisz ?",
+    "dalete": "O'chirish",
+    "back_to": "Ortga",
+    "add": "Qo'shish",
+    "doctor_dalete": "Shiforkorni o'chirish",
+    "doctor_about_dal": "Shifokorni haqiqatan o'chirmoqchimisz ?",
+    "doctor_update": "Shifokorni tahrirlash",
+    "update": "Tahrirlash",
+    "password": "Parol"
+}

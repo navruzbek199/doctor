@@ -1,0 +1,19 @@
+{
+    "welcome_to_react": "privet",
+    "logout": "Выйти",
+    "patient": "Пациенты",
+    "firstname": "ФИО",
+    "username": "Имя",
+    "phonenumber": "Телефон номер",
+    "doctor": "Врачи",
+    "patient_dalate": "Удалить пациента",
+    "patient_about_dal": "Вы уверены, что хотите удалить пациента?",
+    "dalete": "Удалить",
+    "back_to": "Назад",
+    "add": "Создать",
+    "doctor_dalete": "Удалить доктора",
+    "doctor_about_dal": "Вы действительно хотите удалить врача?",
+    "doctor_update": "Shifokorni tahrirlash",
+    "update": "Редактирование",
+    "password": "Пароль"
+}

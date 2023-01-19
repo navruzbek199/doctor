@@ -4,13 +4,15 @@ import classnames from 'classnames'
 import { useForm } from 'react-hook-form'
 import { Send } from 'react-feather'
 import axios from 'axios'
-import { useParams } from 'react-router-dom'
+import { useHistory, useParams } from 'react-router-dom'
 const SendPage = () => {
     const { register, errors } = useForm()
     const [selectedFile, setSelectedFile] = React.useState(null)
-    const [img, setImg] = useState()
+    const [img, setImg] = useState(null)
     const [getImage, setGetImage] = useState()
     const param = useParams()
+    const token = localStorage.getItem("access_token")
+    const history = useHistory()
     console.log(param, "bu param")
     const handleSubmit = async (event) => {
         event.preventDefault()
@@ -19,11 +21,15 @@ const SendPage = () => {
         try {
           const response = await axios({
             method: "post",
-            url: `http://192.168.100.225:8000/api/v1/files/upload?id=${param?.userId}`,
+            url: `http://192.168.100.225:8082/api/v1/files/upload?id=${param?.userId}`,
             data: formData,
-            headers: { "Content-Type": "multipart/form-data"}
+            headers: { 
+                Authorization: `Bearer ${token}`,
+                "Content-Type": "multipart/form-data"
+            }
           }).then((res) => {
               setGetImage(res?.data)
+              history.push('/doctors')
               console.log(res?.data, "bu uid")
           })
         } catch (error) {
@@ -33,8 +39,11 @@ const SendPage = () => {
     useEffect(() => {
         const res = axios({
             method: "get",
-            url: `http://192.168.100.225:8000/api/v1/attachment/download/${getImage?.uid}`,
-            headers: { "Content-Type": "multipart/form-data" }
+            url: `http://192.168.100.225:8082/api/v1/files/download/${getImage?.uid}`,
+            headers: { 
+                Authorization: `Bearer ${token}`,
+                "Content-Type": "multipart/form-data"
+             }
         }).then(res => {
             //   setImg(res?.data)
               console.log(res?.data, "rasm get")
@@ -65,7 +74,7 @@ const SendPage = () => {
                             <Input
                                 type="file"
                                 name='file'
-                                accept="image/*" 
+                                // accept="image/*" 
                                 id='file'
                                 onChange={handleFileSelect}
                                 innerRef={register({ required: true })}

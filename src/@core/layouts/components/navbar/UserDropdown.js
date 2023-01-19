@@ -1,6 +1,6 @@
 // ** React Imports
 import { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useHistory, useParams } from 'react-router-dom'
 
 // ** Custom Components
 import Avatar from '@components/avatar'
@@ -19,38 +19,65 @@ import { User, Mail, CheckSquare, MessageSquare, Settings, CreditCard, HelpCircl
 // ** Default Avatar Image
 import defaultAvatar from '@src/assets/images/portrait/small/avatar-s-11.jpg'
 import jwt_decode from "jwt-decode"
+import { useTranslation } from "react-i18next"
+import cookies from 'js-cookie'
+import i18next from 'i18next'
+import '../../../../views/views.scss'
 const UserDropdown = () => {
-  // ** Store Vars
+  const { t } = useTranslation()
   const dispatch = useDispatch()
-  const token = localStorage.getItem("token")
-  const decoded = jwt_decode(token)
-  console.log(decoded, "decoded")
-  // ** State
+  const history = useHistory()
+  const [logout, setLogout] = useState(false)
   const [userData, setUserData] = useState(null)
-
-  //** ComponentDidMount
-  useEffect(() => {
-    if (isUserLoggedIn() !== null) {
-      setUserData(JSON.parse(localStorage.getItem('userData')))
+  const token = localStorage.getItem("access_token")
+  const decoded = jwt_decode(token)
+  const currentLanguageCode = cookies.get('i18next') || 'uz'
+  const languages = [
+    {
+      code: 'ru',
+      name: 'Rus',
+      country_code: 'ru'
+    },
+    {
+      code: 'uz',
+      name: 'Uzb',
+      country_code: 'uzb'
     }
-  }, [])
-
+  ]
   //** Vars
   const userAvatar = (userData && userData.avatar) || defaultAvatar
-
+  if (logout === true) {
+    localStorage.removeItem("access_token")
+    history.push('/login')
+  }
   return (
     <UncontrolledDropdown tag='li' className='dropdown-user nav-item'>
+      <div className="head_lang mr-4">
+        {languages?.map(({ code, name }) => (
+          <a
+            key={code}
+            onClick={() => { i18next.changeLanguage(code) }}
+            style={{
+              opacity: currentLanguageCode !== code ? 0.5 : 1
+            }}
+            className={{ disabled: currentLanguageCode === code }}
+          >
+            {name}
+          </a>
+        ))
+        }
+      </div>
       <DropdownToggle href='/' tag='a' className='nav-link dropdown-user-link' onClick={e => e.preventDefault()}>
         <div className='user-nav d-sm-flex d-none'>
-          <span className='user-name font-weight-bold'>{decoded?.firstName} {decoded?.lastName}</span>
-          <span className='user-status'>{decoded?.user_type}</span>
+          <span className='user-name font-weight-bold mb-1/2' style={{marginBottom:"8px"}}>{decoded?.sub} {""}</span>
+          <span className='user-status'>{decoded?.roles[0]}</span>
         </div>
         <Avatar img={userAvatar} imgHeight='40' imgWidth='40' status='online' />
       </DropdownToggle>
       <DropdownMenu right>
         <DropdownItem tag={Link} to='#' onClick={e => e.preventDefault()}>
           <User size={14} className='mr-75' />
-          <span className='align-middle'>Profile</span>
+          <span className='align-middle'>{t('welcome_to_react')}</span>
         </DropdownItem>
         <DropdownItem tag={Link} to='#' onClick={e => e.preventDefault()}>
           <Mail size={14} className='mr-75' />
@@ -64,9 +91,9 @@ const UserDropdown = () => {
           <MessageSquare size={14} className='mr-75' />
           <span className='align-middle'>Chats</span>
         </DropdownItem>
-        <DropdownItem tag={Link} to='/login' onClick={() => dispatch(handleLogout())}>
+        <DropdownItem onClick={() => setLogout(true)}>
           <Power size={14} className='mr-75' />
-          <span className='align-middle'>Logout</span>
+          <span className='align-middle'>{t('logout')}</span>
         </DropdownItem>
       </DropdownMenu>
     </UncontrolledDropdown>
