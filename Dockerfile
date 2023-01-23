@@ -3,7 +3,7 @@ FROM node:14-alpine AS build
 WORKDIR /app
 
 COPY package.json package-lock.json ./
-RUN npm i npx -g
+
 RUN npm ci
 
 COPY . .
