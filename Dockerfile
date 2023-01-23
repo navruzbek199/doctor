@@ -1,29 +1,24 @@
-FROM node:14 as build
-
-# Create app directory
-RUN mkdir -p /usr/src/app
-WORKDIR /usr/src/app
-
-# Install app dependencies
+FROM node:14-alpine AS builder
+ENV NODE_ENV production
+# Add a work directory
+WORKDIR /app
+# Cache and Install dependencies
 COPY package.json .
-RUN npm install
-
-# Copy app source code
+COPY yarn.lock .
+RUN yarn install --production
+# Copy app files
 COPY . .
+# Build the app
+RUN yarn build
 
-# Build app using CRACO
-RUN npm run build
-
-#
-# Use nginx as runtime
-#
-FROM nginx:1.19
-
-# Copy build files to nginx
-COPY --from=build /usr/src/app/build /usr/share/nginx/html
-
-# Copy nginx config
+# Bundle static assets with nginx
+FROM nginx:1.21.0-alpine as production
+ENV NODE_ENV production
+# Copy built assets from builder
+COPY --from=builder /app/build /usr/share/nginx/html
+# Add your nginx.conf
 COPY nginx.conf /etc/nginx/conf.d/default.conf
-
+# Expose port
+EXPOSE 80
 # Start nginx
 CMD ["nginx", "-g", "daemon off;"]
