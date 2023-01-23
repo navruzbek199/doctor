@@ -7,7 +7,7 @@ RUN npm i npx -g
 RUN npm ci
 
 COPY . .
-RUN npx craco build
+RUN npm run build
 
 FROM nginx:alpine
 
