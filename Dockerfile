@@ -4,14 +4,14 @@ FROM node:16-alpine as builder
 # copy the package.json to install dependencies
 COPY package.json package-lock.json ./
 
+# Install the dependencies and make the folder
+RUN npm install && mkdir /project && mv ./node_modules ./project
+
 WORKDIR /project
 
-COPY . .
-
-# Install the dependencies and make the folder
-RUN npm install
-
 RUN npm install -g craco
+
+COPY . .
 
 # Build the project and copy the files
 RUN npm run build
