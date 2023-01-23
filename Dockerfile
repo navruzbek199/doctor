@@ -1,29 +1,34 @@
-FROM node:14-alpine AS development
+# stage1 as builder
+FROM node:16-alpine as builder
 
-WORKDIR /usr/src/app
+# copy the package.json to install dependencies
+COPY package.json package-lock.json ./
 
-COPY package*.json ./
-RUN npm  cache clear --force
-RUN npm install --legacy-peer-deps
+WORKDIR /project
 
 COPY . .
 
+# Install the dependencies and make the folder
+RUN npm install
+
+RUN npm install -g craco
+
+# Build the project and copy the files
 RUN npm run build
 
-FROM node:14-alpine AS production
 
-ARG NODE_ENV=production
-ENV NODE_ENV=${NODE_ENV}
+FROM nginx:alpine
 
-WORKDIR /usr/src/app
+#!/bin/sh
 
-COPY package.json ./
+COPY nginx.conf /etc/nginx/conf.d/default.conf
 
-RUN npm  cache clear --force
-RUN npm install --legacy-peer-deps
+## Remove default nginx index page
+RUN rm -rf /usr/share/nginx/html/*
 
-COPY . .
+# Copy from the stahg 1
+COPY --from=builder /project/build /usr/share/nginx/html
 
-COPY --from=development /usr/src/app/build ./build
+EXPOSE 80
 
-CMD ["node", "build/main"]
+ENTRYPOINT ["nginx", "-g", "daemon off;"]
